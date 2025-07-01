@@ -1,0 +1,26 @@
+### Health
+GET http://localhost:8000/
+### 1: Registrar nuevo usuario
+curl -X 'POST' \
+  'http://127.0.0.1:8000/users/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "nicolas9",
+  "full_name": "Nicolas Galdame",
+  "email": "nico9@example.com",
+  "password": "nico123"
+}'
+
+###Prueba 2: Iniciar sesión y obtener un token
+curl -X 'POST' \
+  'http://127.0.0.1:8000/token' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'username=nicolas9&password=nico123'
+
+###Prueba 3: Acceder a la ruta protegida
+curl -X 'GET' \
+  'http://127.0.0.1:8000/users/me' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJuaWNvbGFzOSIsImV4cCI6MTc1MTQwOTI2MH0.SocF2RpuPpuF5JLl22FTNbF39eZ7vwkD1aDLdLLjkGA'
